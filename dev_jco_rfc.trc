@@ -1,0 +1,370 @@
+
+**** Error file opened at 20150927 014015 Eastern European Summer Time Rel. 3.0.13 (2015-04-27) [721.510]
+Error:  >Sun Sep 27 01:40:15,832<    RfcException:
+    message: Connect to SAP gateway failed
+Connection parameters: TYPE=A DEST=ABAP_AS ASHOST=10.100.111.6 SYSNR=00 PCS=1
+
+LOCATION    CPIC (TCP/IP) on local host
+ERROR       partner '10.100.111.6:3300' not reached
+TIME        Sun Sep 27 01:40:15 2015
+RELEASE     721
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -10
+MODULE      nibuf.cpp
+LINE        4658
+DETAIL      NiBufIConnect: connection pending after 60000ms
+SYSTEM CALL connect
+ERRNO       36
+ERRNO TEXT  Operation now in progress
+COUNTER     2
+
+    return code: RFC_FAILURE (1)
+    error group: 102
+    key: RFC_ERROR_COMMUNICATION
+Error:  >Sun Sep 27 01:41:15,875<    RfcException:
+    message: Connect to SAP gateway failed
+Connection parameters: TYPE=A DEST=ABAP_AS ASHOST=10.100.111.6 SYSNR=00 PCS=1
+
+LOCATION    CPIC (TCP/IP) on local host
+ERROR       partner '10.100.111.6:3300' not reached
+TIME        Sun Sep 27 01:41:15 2015
+RELEASE     721
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -10
+MODULE      nibuf.cpp
+LINE        4658
+DETAIL      NiBufIConnect: connection pending after 60000ms
+SYSTEM CALL connect
+ERRNO       36
+ERRNO TEXT  Operation now in progress
+COUNTER     4
+
+    return code: RFC_FAILURE (1)
+    error group: 102
+    key: RFC_ERROR_COMMUNICATION
+
+**** Error file opened at 20150927 014154 Eastern European Summer Time Rel. 3.0.13 (2015-04-27) [721.510]
+Error:  >Sun Sep 27 01:41:54,397<    RfcException:
+    message: Connect to SAP gateway failed
+Connection parameters: TYPE=A DEST=ABAP_AS ASHOST=10.100.111.6 SYSNR=00 PCS=1
+
+LOCATION    CPIC (TCP/IP) on local host
+ERROR       partner '10.100.111.6:3300' not reached
+TIME        Sun Sep 27 01:41:54 2015
+RELEASE     721
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -10
+MODULE      nibuf.cpp
+LINE        4658
+DETAIL      NiBufIConnect: connection pending after 60000ms
+SYSTEM CALL connect
+ERRNO       36
+ERRNO TEXT  Operation now in progress
+COUNTER     2
+
+    return code: RFC_FAILURE (1)
+    error group: 102
+    key: RFC_ERROR_COMMUNICATION
+
+**** Error file opened at 20150927 014409 Eastern European Summer Time Rel. 3.0.13 (2015-04-27) [721.510]
+Error:  >Sun Sep 27 01:44:09,894<    RfcException:
+    message: Connect to SAP gateway failed
+Connection parameters: TYPE=A DEST=ABAP_AS ASHOST=10.100.111.6 SYSNR=00 PCS=1
+
+LOCATION    CPIC (TCP/IP) on local host
+ERROR       partner '10.100.111.6:3300' not reached
+TIME        Sun Sep 27 01:44:09 2015
+RELEASE     721
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -10
+MODULE      nibuf.cpp
+LINE        4658
+DETAIL      NiBufIConnect: connection pending after 60000ms
+SYSTEM CALL connect
+ERRNO       36
+ERRNO TEXT  Operation now in progress
+COUNTER     2
+
+    return code: RFC_FAILURE (1)
+    error group: 102
+    key: RFC_ERROR_COMMUNICATION
+Error:  >Sun Sep 27 01:45:09,904<    RfcException:
+    message: Connect to SAP gateway failed
+Connection parameters: TYPE=A DEST=ABAP_AS ASHOST=10.100.111.6 SYSNR=00 PCS=1
+
+LOCATION    CPIC (TCP/IP) on local host
+ERROR       partner '10.100.111.6:3300' not reached
+TIME        Sun Sep 27 01:45:09 2015
+RELEASE     721
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -10
+MODULE      nibuf.cpp
+LINE        4658
+DETAIL      NiBufIConnect: connection pending after 60000ms
+SYSTEM CALL connect
+ERRNO       36
+ERRNO TEXT  Operation now in progress
+COUNTER     4
+
+    return code: RFC_FAILURE (1)
+    error group: 102
+    key: RFC_ERROR_COMMUNICATION
+
+**** Error file opened at 20150927 015821 Eastern European Summer Time Rel. 3.0.13 (2015-04-27) [721.510]
+Error:  >Sun Sep 27 01:58:21,888<    RfcException:
+    message: Connect to SAP gateway failed
+Connection parameters: TYPE=A DEST=ABAP_AS ASHOST=bilotsap2.bilot.local SYSNR=00 PCS=1
+
+LOCATION    CPIC (TCP/IP) on local host
+ERROR       partner 'bilotsap2.bilot.local:3300' not reached
+TIME        Sun Sep 27 01:58:21 2015
+RELEASE     721
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -10
+MODULE      nibuf.cpp
+LINE        4658
+DETAIL      NiBufIConnect: connection pending after 60000ms
+SYSTEM CALL connect
+ERRNO       36
+ERRNO TEXT  Operation now in progress
+COUNTER     2
+
+    return code: RFC_FAILURE (1)
+    error group: 102
+    key: RFC_ERROR_COMMUNICATION
+Error:  >Sun Sep 27 01:59:21,982<    RfcException:
+    message: Connect to SAP gateway failed
+Connection parameters: TYPE=A DEST=ABAP_AS ASHOST=bilotsap2.bilot.local SYSNR=00 PCS=1
+
+LOCATION    CPIC (TCP/IP) on local host
+ERROR       partner 'bilotsap2.bilot.local:3300' not reached
+TIME        Sun Sep 27 01:59:21 2015
+RELEASE     721
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -10
+MODULE      nibuf.cpp
+LINE        4658
+DETAIL      NiBufIConnect: connection pending after 60000ms
+SYSTEM CALL connect
+ERRNO       36
+ERRNO TEXT  Operation now in progress
+COUNTER     4
+
+    return code: RFC_FAILURE (1)
+    error group: 102
+    key: RFC_ERROR_COMMUNICATION
+
+**** Error file opened at 20150927 020249 Eastern European Summer Time Rel. 3.0.13 (2015-04-27) [721.510]
+Error:  >Sun Sep 27 02:02:49,185<    RfcException:
+    message: Connect to SAP gateway failed
+Connection parameters: TYPE=A DEST=SAP_R3 ASHOST=bilotsap2.bilot.local SYSNR=00 PCS=1
+
+LOCATION    CPIC (TCP/IP) on local host
+ERROR       partner 'bilotsap2.bilot.local:3300' not reached
+TIME        Sun Sep 27 02:02:49 2015
+RELEASE     721
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -10
+MODULE      nibuf.cpp
+LINE        4658
+DETAIL      NiBufIConnect: connection pending after 60000ms
+SYSTEM CALL connect
+ERRNO       36
+ERRNO TEXT  Operation now in progress
+COUNTER     2
+
+    return code: RFC_FAILURE (1)
+    error group: 102
+    key: RFC_ERROR_COMMUNICATION
+
+**** Error file opened at 20150927 021717 Eastern European Summer Time Rel. 3.0.13 (2015-04-27) [721.510]
+Error:  >Sun Sep 27 02:17:17,803<    RfcException:
+    message: Connect to SAP gateway failed
+Connection parameters: TYPE=A DEST=SAP_R3 ASHOST=10.100.2.23 SYSNR=00 PCS=1
+
+LOCATION    CPIC (TCP/IP) on local host
+ERROR       partner '10.100.2.23:3300' not reached
+TIME        Sun Sep 27 02:17:17 2015
+RELEASE     721
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -10
+MODULE      nibuf.cpp
+LINE        4658
+DETAIL      NiBufIConnect: connection pending after 60000ms
+SYSTEM CALL connect
+ERRNO       36
+ERRNO TEXT  Operation now in progress
+COUNTER     2
+
+    return code: RFC_FAILURE (1)
+    error group: 102
+    key: RFC_ERROR_COMMUNICATION
+Error:  >Sun Sep 27 02:18:17,905<    RfcException:
+    message: Connect to SAP gateway failed
+Connection parameters: TYPE=A DEST=SAP_R3 ASHOST=10.100.2.23 SYSNR=00 PCS=1
+
+LOCATION    CPIC (TCP/IP) on local host
+ERROR       partner '10.100.2.23:3300' not reached
+TIME        Sun Sep 27 02:18:17 2015
+RELEASE     721
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -10
+MODULE      nibuf.cpp
+LINE        4658
+DETAIL      NiBufIConnect: connection pending after 60000ms
+SYSTEM CALL connect
+ERRNO       36
+ERRNO TEXT  Operation now in progress
+COUNTER     4
+
+    return code: RFC_FAILURE (1)
+    error group: 102
+    key: RFC_ERROR_COMMUNICATION
+
+**** Error file opened at 20150927 021931 Eastern European Summer Time Rel. 3.0.13 (2015-04-27) [721.510]
+Error:  >Sun Sep 27 02:19:31,752<    RfcException:
+    message: Connect to SAP gateway failed
+Connection parameters: TYPE=A DEST=SAP_R3 ASHOST=10.100.2.17 SYSNR=50 PCS=1
+
+LOCATION    CPIC (TCP/IP) on local host
+ERROR       partner '10.100.2.17:3350' not reached
+TIME        Sun Sep 27 02:19:31 2015
+RELEASE     721
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -10
+MODULE      nibuf.cpp
+LINE        4658
+DETAIL      NiBufIConnect: connection pending after 60000ms
+SYSTEM CALL connect
+ERRNO       36
+ERRNO TEXT  Operation now in progress
+COUNTER     2
+
+    return code: RFC_FAILURE (1)
+    error group: 102
+    key: RFC_ERROR_COMMUNICATION
+Error:  >Sun Sep 27 02:20:31,763<    RfcException:
+    message: Connect to SAP gateway failed
+Connection parameters: TYPE=A DEST=SAP_R3 ASHOST=10.100.2.17 SYSNR=50 PCS=1
+
+LOCATION    CPIC (TCP/IP) on local host
+ERROR       partner '10.100.2.17:3350' not reached
+TIME        Sun Sep 27 02:20:31 2015
+RELEASE     721
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -10
+MODULE      nibuf.cpp
+LINE        4658
+DETAIL      NiBufIConnect: connection pending after 60000ms
+SYSTEM CALL connect
+ERRNO       36
+ERRNO TEXT  Operation now in progress
+COUNTER     4
+
+    return code: RFC_FAILURE (1)
+    error group: 102
+    key: RFC_ERROR_COMMUNICATION
+
+**** Error file opened at 20150927 023000 Eastern European Summer Time Rel. 3.0.13 (2015-04-27) [721.510]
+Error:  >Sun Sep 27 02:30:00,503<    RfcException:
+    message: Connect to SAP gateway failed
+Connection parameters: TYPE=A DEST=SAP_R3 ASHOST=10.100.2.17 SYSNR=50 PCS=1
+
+LOCATION    CPIC (TCP/IP) on local host
+ERROR       partner '10.100.2.17:3350' not reached
+TIME        Sun Sep 27 02:30:00 2015
+RELEASE     721
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -10
+MODULE      nibuf.cpp
+LINE        4658
+DETAIL      NiBufIConnect: connection pending after 60000ms
+SYSTEM CALL connect
+ERRNO       36
+ERRNO TEXT  Operation now in progress
+COUNTER     2
+
+    return code: RFC_FAILURE (1)
+    error group: 102
+    key: RFC_ERROR_COMMUNICATION
+Error:  >Sun Sep 27 02:31:00,513<    RfcException:
+    message: Connect to SAP gateway failed
+Connection parameters: TYPE=A DEST=SAP_R3 ASHOST=10.100.2.17 SYSNR=50 PCS=1
+
+LOCATION    CPIC (TCP/IP) on local host
+ERROR       partner '10.100.2.17:3350' not reached
+TIME        Sun Sep 27 02:31:00 2015
+RELEASE     721
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -10
+MODULE      nibuf.cpp
+LINE        4658
+DETAIL      NiBufIConnect: connection pending after 60000ms
+SYSTEM CALL connect
+ERRNO       36
+ERRNO TEXT  Operation now in progress
+COUNTER     4
+
+    return code: RFC_FAILURE (1)
+    error group: 102
+    key: RFC_ERROR_COMMUNICATION
+
+**** Error file opened at 20150927 031624 Eastern European Summer Time Rel. 3.0.13 (2015-04-27) [721.510]
+Error:  >Sun Sep 27 03:16:24,814<    RfcException:
+    message: Connect to SAP gateway failed
+Connection parameters: TYPE=A DEST=DESTINATION_WITH_POOL ASHOST=10.100.2.17 SYSNR=50 PCS=1
+
+LOCATION    CPIC (TCP/IP) on local host
+ERROR       partner '10.100.2.17:3350' not reached
+TIME        Sun Sep 27 03:16:24 2015
+RELEASE     721
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -10
+MODULE      nibuf.cpp
+LINE        4658
+DETAIL      NiBufIConnect: connection pending after 60000ms
+SYSTEM CALL connect
+ERRNO       36
+ERRNO TEXT  Operation now in progress
+COUNTER     2
+
+    return code: RFC_FAILURE (1)
+    error group: 102
+    key: RFC_ERROR_COMMUNICATION
+Error:  >Sun Sep 27 03:17:24,828<    RfcException:
+    message: Connect to SAP gateway failed
+Connection parameters: TYPE=A DEST=DESTINATION_WITH_POOL ASHOST=10.100.2.17 SYSNR=50 PCS=1
+
+LOCATION    CPIC (TCP/IP) on local host
+ERROR       partner '10.100.2.17:3350' not reached
+TIME        Sun Sep 27 03:17:24 2015
+RELEASE     721
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -10
+MODULE      nibuf.cpp
+LINE        4658
+DETAIL      NiBufIConnect: connection pending after 60000ms
+SYSTEM CALL connect
+ERRNO       36
+ERRNO TEXT  Operation now in progress
+COUNTER     4
+
+    return code: RFC_FAILURE (1)
+    error group: 102
+    key: RFC_ERROR_COMMUNICATION

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="SAP_JARS/sapjco3.jar" sourcepath="SAP_JARS/sapjco3.jar"/>
+	<classpathentry kind="lib" path="lib/sapjco3.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
