@@ -40,8 +40,8 @@ public class SapJcoRestApi {
     
 	private static JCoDestination getDestination() throws JCoException 
 	{
-		CustomDestinationDataProvider myProvider = CustomDestinationDataProvider.getInstance(); 
-		Environment.registerDestinationDataProvider(myProvider);
+		CustomDestinationDataProvider provider = CustomDestinationDataProvider.getInstance(); 
+		Environment.registerDestinationDataProvider(provider);
         
         Properties conProp = getConnectionProperties();
         Properties connectProperties = new Properties(); 
@@ -57,7 +57,7 @@ public class SapJcoRestApi {
         connectProperties.setProperty(DestinationDataProvider.JCO_PEAK_LIMIT, conProp.getProperty("CONNECTION_POOL_PEAK_LIMIT"));
         
         String destinationName = "ABAP_AS_POOLED";
-        myProvider.addDestination(destinationName, connectProperties);     
+        provider.addDestination(destinationName, connectProperties);     
         JCoDestination jcoDestination = JCoDestinationManager.getDestination(destinationName);
         
         return jcoDestination;
@@ -66,9 +66,9 @@ public class SapJcoRestApi {
 	private static void pingDestination(JCoDestination jcoDestination) 
 	{
 		try{  
-        	System.out.println("Pinging SAP ERP...");
+        	System.out.println("Pinging " + jcoDestination.getDestinationID() + " ...");
         	jcoDestination.ping();  
-            System.out.println("Destination is ok");
+            System.out.println("Ping ok");
         } catch(Exception e){  
             e.printStackTrace();  
             System.out.println("Destination is invalid");  
@@ -97,6 +97,7 @@ public class SapJcoRestApi {
 
         try
         {
+        	System.out.println("Calling STFC_CONNECTION");
             function.execute(destination);
         }
         catch(AbapException e)
@@ -104,8 +105,6 @@ public class SapJcoRestApi {
             System.out.println(e.toString());
             return;
         }
-
-        System.out.println("STFC_CONNECTION finished:");
         System.out.println(" Echo: " + function.getExportParameterList().getString("ECHOTEXT"));
         System.out.println(" Response: " + function.getExportParameterList().getString("RESPTEXT"));
         System.out.println();
@@ -119,6 +118,7 @@ public class SapJcoRestApi {
 
         try
         {
+        	System.out.println("Calling RFC_SYSTEM_INFO");
             function.execute(destination);
         }
         catch(AbapException e)
@@ -151,6 +151,7 @@ public class SapJcoRestApi {
 
         try
         {
+        	System.out.println("Calling BAPI_COMPANYCODE_GETLIST");
             function.execute(destination);
         }
         catch(AbapException e)

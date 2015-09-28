@@ -18,20 +18,18 @@ public class CustomDestinationDataProvider implements DestinationDataProvider {
     private static CustomDestinationDataProvider provider = new CustomDestinationDataProvider();  
       
     private CustomDestinationDataProvider(){  
-        if( provider == null ){  
-            System.out.println("Creating CustomDestinationDataProvider ... ");  
+        if( provider == null ){ 
             destinations = new HashMap();  
         }  
     }  
 
-    public static CustomDestinationDataProvider getInstance() {  
-        System.out.println("Getting CustomDestinationDataProvider...");  
+    public static CustomDestinationDataProvider getInstance() { 
         return provider;  
     }  
       
     public Properties getDestinationProperties(String destinationName) {     
-        if( destinations.containsKey( destinationName ) ){  
-            return destinations.get( destinationName );  
+        if( destinations.containsKey(destinationName)){  
+            return destinations.get(destinationName);  
         } else {  
             throw new RuntimeException("Destination " + destinationName + " is not available");     
         }  
