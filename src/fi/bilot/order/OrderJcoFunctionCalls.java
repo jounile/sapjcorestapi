@@ -15,11 +15,9 @@ import java.io.PrintStream;
 public class OrderJcoFunctionCalls
 {
 
-  public static SalesDocument retrieveSalesDocumentFromErp(String salesOrderNumber)
+  public SalesDocument retrieveSalesDocumentFromErp(JCoDestination destination, String salesOrderNumber)
     throws JCoException
   {
-    JCoDestination destination = JCoDestinationManager.getDestination("ABAP_AS");
-
     JCoFunction function = destination.getRepository().getFunction("BAPI_ISAORDER_GETDETAILEDLIST");
     if (function == null) {
       throw new RuntimeException("Function BAPI_ISAORDER_GETDETAILEDLIST not found in SAP.");
@@ -39,31 +37,31 @@ public class OrderJcoFunctionCalls
     importTable.setValue("VBELN", salesOrderNumber);
     try
     {
-      function.execute(destination);
+    	System.out.println("Calling BAPI_ISAORDER_GETDETAILEDLIST");
+    	function.execute(destination);
     } catch (AbapException e) {
-      System.out.println(e.toString());
-      throw new Error("FAIL: Error occured while executing function BAPI_ISAORDER_GETDETAILEDLIST");
+    	System.out.println(e.toString());
+    	throw new Error("FAIL: Error occured while executing function BAPI_ISAORDER_GETDETAILEDLIST");
     }
-
-    System.out.println("BAPI_ISAORDER_GETDETAILEDLIST finished:");
 
     SalesDocument salesDocument = new SalesDocument();
     salesDocument.setSalesDocumentNumber(salesOrderNumber);
-
+    JCoTable exportTable = null;
+    
     if (importStructure.getValue("HEADER").toString().equalsIgnoreCase("X")) {
-      JCoTable exportTable = null;
       exportTable = function.getTableParameterList().getTable("ORDER_HEADERS_OUT");
       salesDocument.setOrderHeadersOut(exportTable);
+      System.out.println(exportTable);
     }
     if (importStructure.getValue("STATUS_H").toString().equalsIgnoreCase("X")) {
-      JCoTable exportTable = null;
       exportTable = function.getTableParameterList().getTable("ORDER_STATUSHEADERS_OUT");
       salesDocument.setOrderStatusheadersOut(exportTable);
+      System.out.println(exportTable);
     }
     if (importStructure.getValue("STATUS_I").toString().equalsIgnoreCase("X")) {
-      JCoTable exportTable = null;
       exportTable = function.getTableParameterList().getTable("ORDER_STATUSITEMS_OUT");
       salesDocument.setOrderStatusitemsOut(exportTable);
+      System.out.println(exportTable);
     }
 
     return salesDocument;

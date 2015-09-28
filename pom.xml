@@ -1,0 +1,107 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>fi.bilot.sapjcorestapi</groupId>
+  <artifactId>sapjcorestapi</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>war</packaging>
+  <name>SAP JCO REST API</name>
+  <description>SAP JCO REST API for calling SAP ERP</description>
+
+  <organization>
+    <name>Bilot Consulting Oy</name>
+	<url>http://www.bilot.fi</url>
+  </organization>
+
+  <developers>
+	<developer>
+		<name>Jouni Leino</name>
+		<email>jouni.leino@bilot.fi</email>
+		<url>http://www.bilot.fi</url>
+		<organization>Bilot Consulting Oy</organization>
+		<organizationUrl>http://www.bilot.fi/</organizationUrl>
+	</developer>
+  </developers>
+  
+  <properties>
+	<org.apache.cxf.version>2.7.5</org.apache.cxf.version>
+	<org.springframework.version>3.1.2.RELEASE</org.springframework.version>
+  </properties>
+	
+  <dependencies>
+  
+  	<dependency>
+		<groupId>org.slf4j</groupId>
+		<artifactId>slf4j-api</artifactId>
+		<version>1.7.5</version>
+		<scope>provided</scope>
+	</dependency>
+	
+	<dependency>
+		<groupId>javax.servlet</groupId>
+		<artifactId>javax.servlet-api</artifactId>
+		<version>3.0.1</version>
+	</dependency>
+  
+	<!-- Apache CXF -->
+	<dependency>
+		<groupId>org.apache.cxf</groupId>
+		<artifactId>cxf-rt-frontend-jaxws</artifactId>
+		<version>${org.apache.cxf.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.apache.cxf</groupId>
+		<artifactId>cxf-rt-transports-http</artifactId>
+		<version>${org.apache.cxf.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.apache.cxf</groupId>
+		<artifactId>cxf-rt-rs-extension-providers</artifactId>
+		<version>${org.apache.cxf.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.apache.cxf</groupId>
+		<artifactId>cxf-bundle-jaxrs</artifactId>
+		<version>${org.apache.cxf.version}</version>
+	</dependency>
+
+	<!-- Spring framework -->
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-context</artifactId>
+		<version>${org.springframework.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-web</artifactId>
+		<version>${org.springframework.version}</version>
+	</dependency>
+	
+  </dependencies>
+  
+  <build>
+    <sourceDirectory>src</sourceDirectory>
+    <plugins>    
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.3</version>
+        <configuration>
+          <source/>
+          <target/>
+        </configuration>
+      </plugin>
+    
+	  <plugin>
+		<groupId>org.apache.maven.plugins</groupId>
+		<artifactId>maven-war-plugin</artifactId>
+		<version>2.1.1</version>
+		<configuration>
+			<warName>${project.artifactId}</warName>
+			<archive>
+				<manifestFile>src/main/resources/META-INF/MANIFEST.MF</manifestFile>
+			</archive>
+		</configuration>
+	  </plugin>
+	</plugins>
+  </build>
+  
+</project>

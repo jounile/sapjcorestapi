@@ -1,3 +1,4 @@
 # Ignored files
 
 connection.properties
+/target/
