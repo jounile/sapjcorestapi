@@ -1,21 +1,25 @@
 package fi.bilot.test;
 
-import java.io.FileInputStream;
-import java.util.Properties;
-
 import com.sap.conn.jco.AbapException;
 import com.sap.conn.jco.JCoDestination;
+import com.sap.conn.jco.JCoDestinationManager;
 import com.sap.conn.jco.JCoException;
 import com.sap.conn.jco.JCoField;
 import com.sap.conn.jco.JCoFunction;
 import com.sap.conn.jco.JCoStructure;
 import com.sap.conn.jco.JCoTable;
 
+import fi.bilot.Constants;
+import fi.bilot.JcoConnection;
+
 public class TestJcoFunctionCalls {
 	
-	public void pingDestination(JCoDestination jcoDestination) 
+	//private static JcoConnection con = new JcoConnection();
+	
+	public void pingDestination() throws JCoException
 	{
 		try{  
+			JCoDestination jcoDestination = JCoDestinationManager.getDestination(Constants.DESTINATION_NAME);
         	System.out.println("Pinging " + jcoDestination.getDestinationID() + " ...");
         	jcoDestination.ping();  
             System.out.println("Ping ok");
@@ -25,9 +29,10 @@ public class TestJcoFunctionCalls {
         }
 	}
     
-    public void requestSystemDetails(JCoDestination destination) throws JCoException
+    public void requestSystemDetails() throws JCoException
     {
-        JCoFunction function = destination.getRepository().getFunction("STFC_CONNECTION");
+    	JCoDestination jcoDestination = JCoDestinationManager.getDestination(Constants.DESTINATION_NAME);
+        JCoFunction function = jcoDestination.getRepository().getFunction("STFC_CONNECTION");
         if(function == null)
             throw new RuntimeException("Function STFC_CONNECTION not found in SAP.");
 
@@ -36,7 +41,7 @@ public class TestJcoFunctionCalls {
         try
         {
         	System.out.println("Calling STFC_CONNECTION");
-            function.execute(destination);
+            function.execute(jcoDestination);
         }
         catch(AbapException e)
         {
@@ -48,16 +53,17 @@ public class TestJcoFunctionCalls {
         System.out.println();
     }
 
-    public void callWithStructure(JCoDestination destination) throws JCoException
+    public void callWithStructure() throws JCoException
     {
-        JCoFunction function = destination.getRepository().getFunction("RFC_SYSTEM_INFO");
+    	JCoDestination jcoDestination = JCoDestinationManager.getDestination(Constants.DESTINATION_NAME);
+        JCoFunction function = jcoDestination.getRepository().getFunction("RFC_SYSTEM_INFO");
         if(function == null)
             throw new RuntimeException("RFC_SYSTEM_INFO not found in SAP.");
 
         try
         {
         	System.out.println("Calling RFC_SYSTEM_INFO");
-            function.execute(destination);
+            function.execute(jcoDestination);
         }
         catch(AbapException e)
         {
@@ -66,14 +72,14 @@ public class TestJcoFunctionCalls {
         }
 
         JCoStructure exportStructure = function.getExportParameterList().getStructure("RFCSI_EXPORT");
-        System.out.println("System info for " + destination.getAttributes().getSystemID() + ":\n");
+        System.out.println("System info for " + jcoDestination.getAttributes().getSystemID() + ":\n");
         for(int i = 0; i < exportStructure.getMetaData().getFieldCount(); i++) 
         {
             System.out.println(exportStructure.getMetaData().getName(i) + ":\t" + exportStructure.getString(i));
         }
         System.out.println();
 
-        System.out.println("The same using field iterator: \nSystem info for " + destination.getAttributes().getSystemID() + ":\n");
+        System.out.println("The same using field iterator: \nSystem info for " + jcoDestination.getAttributes().getSystemID() + ":\n");
         for(JCoField field : exportStructure)
         {
             System.out.println(field.getName() + ":\t" + field.getString());
@@ -81,16 +87,17 @@ public class TestJcoFunctionCalls {
         System.out.println();
     }
 
-    public void callWithTable(JCoDestination destination) throws JCoException
+    public void callWithTable() throws JCoException
     {
-        JCoFunction function = destination.getRepository().getFunction("BAPI_COMPANYCODE_GETLIST");
+    	JCoDestination jcoDestination = JCoDestinationManager.getDestination(Constants.DESTINATION_NAME);
+        JCoFunction function = jcoDestination.getRepository().getFunction("BAPI_COMPANYCODE_GETLIST");
         if(function == null)
             throw new RuntimeException("BAPI_COMPANYCODE_GETLIST not found in SAP.");
 
         try
         {
         	System.out.println("Calling BAPI_COMPANYCODE_GETLIST");
-            function.execute(destination);
+            function.execute(jcoDestination);
         }
         catch(AbapException e)
         {
@@ -114,7 +121,7 @@ public class TestJcoFunctionCalls {
         codes.firstRow();
         for (int i = 0; i < codes.getNumRows(); i++, codes.nextRow()) 
         {
-            function = destination.getRepository().getFunction("BAPI_COMPANYCODE_GETDETAIL");
+            function = jcoDestination.getRepository().getFunction("BAPI_COMPANYCODE_GETDETAIL");
             if (function == null) 
                 throw new RuntimeException("BAPI_COMPANYCODE_GETDETAIL not found in SAP.");
 
@@ -123,7 +130,7 @@ public class TestJcoFunctionCalls {
 
             try
             {
-                function.execute(destination);
+                function.execute(jcoDestination);
             }
             catch (AbapException e)
             {

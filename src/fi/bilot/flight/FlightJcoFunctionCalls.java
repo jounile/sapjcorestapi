@@ -2,6 +2,7 @@ package fi.bilot.flight;
 
 import com.sap.conn.jco.AbapException;
 import com.sap.conn.jco.JCoDestination;
+import com.sap.conn.jco.JCoDestinationManager;
 import com.sap.conn.jco.JCoException;
 import com.sap.conn.jco.JCoField;
 import com.sap.conn.jco.JCoFunction;
@@ -10,6 +11,8 @@ import com.sap.conn.jco.JCoRecordMetaData;
 import com.sap.conn.jco.JCoRepository;
 import com.sap.conn.jco.JCoStructure;
 import com.sap.conn.jco.JCoTable;
+
+import fi.bilot.Constants;
 
 public class FlightJcoFunctionCalls {
 	
@@ -23,13 +26,11 @@ public class FlightJcoFunctionCalls {
 	private String connectionNumber = "0400";
 	private String date = "20151010";
 	
-	public void getFlightList(JCoDestination destination) throws JCoException {
+	public void getFlightList() throws JCoException {
 		
-		JCoRepository rep = null;
-		JCoFunction function = null;
-
-		rep = destination.getRepository();
-		function = rep.getFunctionTemplate("BAPI_SFLIGHT_GETLIST").getFunction();
+		JCoDestination jcoDestination = JCoDestinationManager.getDestination(Constants.DESTINATION_NAME);
+		JCoRepository rep = jcoDestination.getRepository();
+		JCoFunction function = rep.getFunctionTemplate("BAPI_SFLIGHT_GETLIST").getFunction();
 		
 		JCoRecordMetaData rec = rep.getStructureDefinition("BAPISFLIST");
 		
@@ -49,7 +50,7 @@ public class FlightJcoFunctionCalls {
 		System.out.println("\n");
 		try {
 			System.out.println("Calling BAPI_SFLIGHT_GETLIST" + "\n");
-			function.execute(destination);
+			function.execute(jcoDestination);
 		} catch (AbapException e) {
 			System.out.println(e.toString());
 			return;
@@ -72,11 +73,12 @@ public class FlightJcoFunctionCalls {
 		}
 	}
 	
-	public void getFlightDetails(JCoDestination destination) {
+	public void getFlightDetails() {
 		
 		try {
-			JCoRepository rep = destination.getRepository();
-			JCoFunction function = destination.getRepository().getFunction("BAPI_SFLIGHT_GETDETAIL");
+			JCoDestination jcoDestination = JCoDestinationManager.getDestination(Constants.DESTINATION_NAME);
+			JCoRepository rep = jcoDestination.getRepository();
+			JCoFunction function = jcoDestination.getRepository().getFunction("BAPI_SFLIGHT_GETDETAIL");
 
 			JCoParameterList imports = function.getImportParameterList();
 			if (carrier != null && !carrier.isEmpty()) {
@@ -98,7 +100,7 @@ public class FlightJcoFunctionCalls {
 				System.out.println(i + 1 + ": " + rec.getName(i) + " " + rec.getDescription(i) + "\t");
 			}
 			
-			function.execute(destination);
+			function.execute(jcoDestination);
 
 			JCoParameterList exports = function.getExportParameterList();
 			JCoStructure returnStructure = exports.getStructure("RETURN");
