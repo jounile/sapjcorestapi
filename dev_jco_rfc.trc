@@ -368,3 +368,95 @@ COUNTER     4
     return code: RFC_FAILURE (1)
     error group: 102
     key: RFC_ERROR_COMMUNICATION
+
+**** Error file opened at 20150928 111445 Eastern European Summer Time Rel. 3.0.13 (2015-04-27) [721.510]
+Error:  >Mon Sep 28 11:14:45,667<    RfcException:
+    message: Connect to SAP gateway failed
+Connection parameters: TYPE=A DEST=DESTINATION_WITH_POOL ASHOST=bilotsap2.bilot.local SYSNR=00 PCS=1
+
+LOCATION    CPIC (TCP/IP) on local host with Unicode
+ERROR       partner 'bilotsap2.bilot.local:3300' not reached
+TIME        Mon Sep 28 11:14:45 2015
+RELEASE     721
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -10
+MODULE      nixxi.cpp
+LINE        3283
+DETAIL      NiPConnect2: 10.100.2.12:3300
+SYSTEM CALL connect
+ERRNO       10060
+ERRNO TEXT  WSAETIMEDOUT: Connection timed out
+COUNTER     2
+
+    return code: RFC_FAILURE (1)
+    error group: 102
+    key: RFC_ERROR_COMMUNICATION
+Error:  >Mon Sep 28 11:15:06,699<    RfcException:
+    message: Connect to SAP gateway failed
+Connection parameters: TYPE=A DEST=DESTINATION_WITH_POOL ASHOST=bilotsap2.bilot.local SYSNR=00 PCS=1
+
+LOCATION    CPIC (TCP/IP) on local host with Unicode
+ERROR       partner 'bilotsap2.bilot.local:3300' not reached
+TIME        Mon Sep 28 11:15:06 2015
+RELEASE     721
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -10
+MODULE      nixxi.cpp
+LINE        3283
+DETAIL      NiPConnect2: 10.100.2.12:3300
+SYSTEM CALL connect
+ERRNO       10060
+ERRNO TEXT  WSAETIMEDOUT: Connection timed out
+COUNTER     4
+
+    return code: RFC_FAILURE (1)
+    error group: 102
+    key: RFC_ERROR_COMMUNICATION
+
+**** Error file opened at 20150928 111550 Eastern European Summer Time Rel. 3.0.13 (2015-04-27) [721.510]
+Error:  >Mon Sep 28 11:15:50,092<    RfcException:
+    message: Connect to SAP gateway failed
+Connection parameters: TYPE=A DEST=DESTINATION_WITH_POOL ASHOST=10.100.2.17 SYSNR=50 PCS=1
+
+LOCATION    CPIC (TCP/IP) on local host with Unicode
+ERROR       partner '10.100.2.17:3350' not reached
+TIME        Mon Sep 28 11:15:50 2015
+RELEASE     721
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -10
+MODULE      nixxi.cpp
+LINE        3283
+DETAIL      NiPConnect2: 10.100.2.17:3350
+SYSTEM CALL connect
+ERRNO       10060
+ERRNO TEXT  WSAETIMEDOUT: Connection timed out
+COUNTER     2
+
+    return code: RFC_FAILURE (1)
+    error group: 102
+    key: RFC_ERROR_COMMUNICATION
+Error:  >Mon Sep 28 11:16:11,115<    RfcException:
+    message: Connect to SAP gateway failed
+Connection parameters: TYPE=A DEST=DESTINATION_WITH_POOL ASHOST=10.100.2.17 SYSNR=50 PCS=1
+
+LOCATION    CPIC (TCP/IP) on local host with Unicode
+ERROR       partner '10.100.2.17:3350' not reached
+TIME        Mon Sep 28 11:16:11 2015
+RELEASE     721
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -10
+MODULE      nixxi.cpp
+LINE        3283
+DETAIL      NiPConnect2: 10.100.2.17:3350
+SYSTEM CALL connect
+ERRNO       10060
+ERRNO TEXT  WSAETIMEDOUT: Connection timed out
+COUNTER     4
+
+    return code: RFC_FAILURE (1)
+    error group: 102
+    key: RFC_ERROR_COMMUNICATION

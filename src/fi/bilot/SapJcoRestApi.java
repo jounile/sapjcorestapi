@@ -26,12 +26,10 @@ import fi.bilot.CustomDestinationDataProvider;
  */
 public class SapJcoRestApi {
 
-    private static final String SAP_ERP = "bit-connection.properties";
-
 	public static void main(String[] args) throws Exception 
     {
     	// Add {sapjco-install-path} to the DYLD_LIBRARY_PATH environment variable.
-    	System.setProperty("java.library.path", "/Users/jounile/sapjco3-darwinintel64-3.0.13");
+    	//System.setProperty("java.library.path", "/Users/jounile/sapjco3-darwinintel64-3.0.13");
         JCoDestination jcoDestination = getDestination();
         pingDestination(jcoDestination);
         requestSystemDetails(jcoDestination);
@@ -42,7 +40,6 @@ public class SapJcoRestApi {
     
 	private static JCoDestination getDestination() throws JCoException 
 	{
-  
 		CustomDestinationDataProvider myProvider = CustomDestinationDataProvider.getInstance(); 
 		Environment.registerDestinationDataProvider(myProvider);
         
@@ -82,7 +79,7 @@ public class SapJcoRestApi {
     {
 		Properties prop = new Properties();
     	try {
-    		FileInputStream fis = new FileInputStream(SAP_ERP);
+    		FileInputStream fis = new FileInputStream("connection.properties");
     		prop.load(fis);
     	} catch(Exception e){
     		System.out.println(e.toString());
