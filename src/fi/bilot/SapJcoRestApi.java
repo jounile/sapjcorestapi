@@ -1,6 +1,7 @@
 package fi.bilot;
 
-import fi.bilot.flight.FlightJcoFunctionCalls;
+import fi.bilot.flight.FlightDetails;
+import fi.bilot.flight.FlightList;
 import fi.bilot.order.OrderJcoFunctionCalls;
 import fi.bilot.test.TestJcoFunctionCalls;
 
@@ -19,7 +20,8 @@ import fi.bilot.test.TestJcoFunctionCalls;
 public class SapJcoRestApi {
 
 	private static TestJcoFunctionCalls test = new TestJcoFunctionCalls();
-	private static FlightJcoFunctionCalls example = new FlightJcoFunctionCalls();
+	private static FlightList fl = new FlightList();
+	private static FlightDetails fd = new FlightDetails();
 	private static OrderJcoFunctionCalls order = new OrderJcoFunctionCalls();
 	
 	public static void main(String[] args) throws Exception 
@@ -31,8 +33,8 @@ public class SapJcoRestApi {
         //test.callWithTable();
 
         //order.retrieveSalesDocumentFromErp("1");
-        //example.getFlightList();
-        example.getFlightDetails();
+        //fl.getFlightList();
+        fd.getFlightDetails();
 
     }    
 }

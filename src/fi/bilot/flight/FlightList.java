@@ -1,5 +1,8 @@
 package fi.bilot.flight;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
 import com.sap.conn.jco.AbapException;
 import com.sap.conn.jco.JCoDestination;
 import com.sap.conn.jco.JCoDestinationManager;
@@ -14,18 +17,14 @@ import com.sap.conn.jco.JCoTable;
 
 import fi.bilot.Constants;
 
-public class FlightJcoFunctionCalls {
+public class FlightList {
 	
 	private String fromCountry = "DE";
 	private String fromCity = "FRANKFURT";
 	private String toCountry = "US";
 	private String toCity = "NEW YORK";
 	private String maxRead = "12";
-	
-	private String carrier = "LH";
-	private String connectionNumber = "0400";
-	private String date = "20151010";
-	
+		
 	public void getFlightList() throws JCoException {
 		
 		JCoDestination jcoDestination = JCoDestinationManager.getDestination(Constants.DESTINATION_NAME);
@@ -57,6 +56,29 @@ public class FlightJcoFunctionCalls {
 		}
 		
 		JCoTable table = function.getTableParameterList().getTable("FLIGHTLIST");
+		
+		System.out.println(table);
+		printFlightList(rec, table);
+		jsonFlightList(rec, table);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public void jsonFlightList(JCoRecordMetaData rec, JCoTable table){
+
+		JSONObject parentObj = new JSONObject();		
+		for (int i = 0; i < table.getNumRows(); i++) 
+		{
+			table.setRow(i);
+			JSONObject subObj = new JSONObject();
+			for (int j = 0; j < rec.getFieldCount(); j++) {					
+				subObj.put(rec.getName(j), table.getString(rec.getName(j)));
+				parentObj.put(i, subObj);
+			}			
+		}
+		System.out.print(parentObj);
+	}
+	
+	public void printFlightList(JCoRecordMetaData rec, JCoTable table){
 
 		System.out.println("========================================================================================");
 		System.out.println("CARRID" + " || " + "CONNID" + " || " + "FLDATE" + " || " + "AIRPFROM" + " || " + "AIRPTO" + " || " + "DEPTIME" + " || " + "SEATSMAX" + " || " + "SEATSOCC" + " || ");
@@ -71,59 +93,6 @@ public class FlightJcoFunctionCalls {
 			System.out.println();
 			System.out.println("====================================================================");
 		}
-	}
-	
-	public void getFlightDetails() {
-		
-		try {
-			JCoDestination jcoDestination = JCoDestinationManager.getDestination(Constants.DESTINATION_NAME);
-			JCoRepository rep = jcoDestination.getRepository();
-			JCoFunction function = jcoDestination.getRepository().getFunction("BAPI_SFLIGHT_GETDETAIL");
-
-			JCoParameterList imports = function.getImportParameterList();
-			if (carrier != null && !carrier.isEmpty()) {
-				imports.setValue("AIRLINECARRIER", carrier);
-			}
-			if (connectionNumber != null && !connectionNumber.isEmpty()) {
-				imports.setValue("CONNECTIONNUMBER", connectionNumber);
-			}
-			if (date != null && !date.isEmpty()) {
-				imports.setValue("DATEOFFLIGHT", date);
-			}
-			
-			JCoRecordMetaData rec = rep.getStructureDefinition("BAPISFDETA");
-			
-			System.out.println("Structure definition BAPISFDETA:\n");
-			
-			int count = rec.getFieldCount();
-			for (int i = 0; i < count; i++) {
-				System.out.println(i + 1 + ": " + rec.getName(i) + " " + rec.getDescription(i) + "\t");
-			}
-			
-			function.execute(jcoDestination);
-
-			JCoParameterList exports = function.getExportParameterList();
-			JCoStructure returnStructure = exports.getStructure("RETURN");
-			JCoStructure flightData = exports.getStructure("FLIGHTDATA");
-
-			if (returnStructure.getChar(0) != 'S') {
-				throw new RuntimeException(returnStructure.getString("MESSAGE"));
-			} else {
-				//System.out.println(flightData.toXML() + "\n");
-
-				System.out.println();
-				for (int i = 0; i < flightData.getMetaData().getFieldCount(); i++) 
-				{
-					System.out.println(flightData.getMetaData().getName(i) + ":\t" + flightData.getString(i));
-				}
-				
-				for(JCoField field : flightData)
-		        {
-		            System.out.println(field.getName() + ":\t" + field.getString());
-		        }
-			}
-		} catch (JCoException e) {
-			throw new RuntimeException(e);
-		}
+		System.out.println();
 	}
 }
