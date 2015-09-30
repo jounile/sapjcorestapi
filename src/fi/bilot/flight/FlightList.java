@@ -32,12 +32,10 @@ public class FlightList {
 		JCoFunction function = rep.getFunctionTemplate("BAPI_SFLIGHT_GETLIST").getFunction();
 		
 		JCoRecordMetaData rec = rep.getStructureDefinition("BAPISFLIST");
-		
 		System.out.println("Structure definition BAPISFLIST:\n");
-		
 		int count = rec.getFieldCount();
 		for (int i = 0; i < count; i++) {
-			System.out.println(i + 1 + ": " + rec.getName(i) + " " + rec.getDescription(i) + "\t");
+			System.out.println(i + 1 + ". " + rec.getName(i) + " " + rec.getDescription(i) + "\t");
 		}
 	
 		function.getImportParameterList().setValue("FROMCOUNTRYKEY", fromCountry);

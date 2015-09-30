@@ -21,12 +21,8 @@ public class OrderJcoFunctionCalls
 	{
 		JCoDestination jcoDestination = JCoDestinationManager.getDestination(Constants.DESTINATION_NAME);
 		JCoFunction function = jcoDestination.getRepository().getFunction("BAPI_ISAORDER_GETDETAILEDLIST");
-		if (function == null) {
-			throw new RuntimeException("Function BAPI_ISAORDER_GETDETAILEDLIST not found in SAP.");
-		}
-		
-		JCoStructure importStructure = function.getImportParameterList().getStructure("I_BAPI_VIEW");
-		
+
+		JCoStructure importStructure = function.getImportParameterList().getStructure("I_BAPI_VIEW");		
 		importStructure.setValue("HEADER", "X");
 		importStructure.setValue("STATUS_H", "X");
 		importStructure.setValue("STATUS_I", "X");
@@ -38,14 +34,8 @@ public class OrderJcoFunctionCalls
 		salesOrderNumber = HelperFunctions.HandleLeadingZeros(salesOrderNumber);
 		importTable.setValue("VBELN", salesOrderNumber);
       
-		try
-		{
-			System.out.println("Calling BAPI_ISAORDER_GETDETAILEDLIST");
-			function.execute(jcoDestination);
-		} catch (AbapException e) {
-			System.out.println(e.toString());
-			throw new Error("FAIL: Error occured while executing function BAPI_ISAORDER_GETDETAILEDLIST");
-		}
+		System.out.println("Calling BAPI_ISAORDER_GETDETAILEDLIST");
+		function.execute(jcoDestination);
 		
 		SalesDocument salesDocument = new SalesDocument();
 		salesDocument.setSalesDocumentNumber(salesOrderNumber);
