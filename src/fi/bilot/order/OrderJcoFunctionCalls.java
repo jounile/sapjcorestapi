@@ -16,7 +16,7 @@ import java.io.PrintStream;
 
 public class OrderJcoFunctionCalls
 {
-
+	
 	public SalesDocument retrieveSalesDocumentFromErp(String salesOrderNumber) throws JCoException 
 	{
 		JCoDestination jcoDestination = JCoDestinationManager.getDestination(Constants.DESTINATION_NAME);
