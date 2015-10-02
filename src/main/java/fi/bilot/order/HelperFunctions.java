@@ -15,9 +15,9 @@ public class HelperFunctions
       return originalNumber;
     }
 
-    System.out.println("Number " + originalNumber + " was less than 10 characters. Adding leading zeros, as SAP requires it...");
+    //System.out.println("Number " + originalNumber + " was less than 10 characters. Adding leading zeros, as SAP requires it...");
     String formattedNumber = "0000000000".substring(originalNumber.length()) + originalNumber;
-    System.out.println("Number " + formattedNumber + " will be used.");
+    //System.out.println("Number " + formattedNumber + " will be used.");
     return formattedNumber;
   }
 

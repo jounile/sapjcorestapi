@@ -69,11 +69,11 @@ public class SalesDocument
     return this.order_headers_out;
   }
 
-  public JCoTable getOrderStatusheadersOut() {
+  public JCoTable getOrderStatusHeadersOut() {
     return this.order_statusheaders_out;
   }
 
-  public JCoTable getOrderStatusitemsOut() {
+  public JCoTable getOrderStatusItemsOut() {
     return this.order_statusitems_out;
   }
 

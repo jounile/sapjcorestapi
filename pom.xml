@@ -1,12 +1,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>fi.bilot.sapjcorestapi</groupId>
+  <groupId>fi.bilot</groupId>
   <artifactId>sapjcorestapi</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
-  <name>SAP JCO REST API</name>
-  <description>SAP JCO REST API for calling SAP ERP</description>
-
+  <url>http://maven.apache.org</url>
+  <name>sapjcorestapi</name>
+  <description>sapjcorestapi</description>
+  
   <organization>
     <name>Bilot Consulting Oy</name>
 	<url>http://www.bilot.fi</url>
@@ -23,8 +24,8 @@
   </developers>
   
   <properties>
-	<org.apache.cxf.version>2.7.5</org.apache.cxf.version>
-	<org.springframework.version>3.1.2.RELEASE</org.springframework.version>
+	<org.apache.cxf.version>2.7.0</org.apache.cxf.version>
+	<org.springframework.version>3.1.0.RELEASE</org.springframework.version>
   </properties>
 	
   <dependencies>
@@ -42,7 +43,13 @@
 		<version>3.0.1</version>
 	</dependency>
   
-	<!-- Apache CXF -->
+  	<!-- Apache CXF -->
+  	<dependency>
+	    <groupId>org.apache.cxf</groupId>
+	    <artifactId>cxf-rt-bindings-soap</artifactId>
+	    <version>${org.apache.cxf.version}</version>
+	    <scope>compile</scope>
+	</dependency>
 	<dependency>
 		<groupId>org.apache.cxf</groupId>
 		<artifactId>cxf-rt-frontend-jaxws</artifactId>
@@ -75,39 +82,16 @@
 		<artifactId>spring-web</artifactId>
 		<version>${org.springframework.version}</version>
 	</dependency>
-	
-	<dependency>
-		<groupId>com.sun.jersey</groupId>
-		<artifactId>jersey-server</artifactId>
-		<version>1.8</version>
-	</dependency>
-		
+<!-- 	
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+-->    
   </dependencies>
-  
   <build>
-    <sourceDirectory>src</sourceDirectory>
-    <plugins>    
-      <plugin>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.3</version>
-        <configuration>
-          <source/>
-          <target/>
-        </configuration>
-      </plugin>
-    
-	  <plugin>
-		<groupId>org.apache.maven.plugins</groupId>
-		<artifactId>maven-war-plugin</artifactId>
-		<version>2.1.1</version>
-		<configuration>
-			<warName>${project.artifactId}</warName>
-			<archive>
-				<manifestFile>src/main/resources/META-INF/MANIFEST.MF</manifestFile>
-			</archive>
-		</configuration>
-	  </plugin>
-	</plugins>
+    <finalName>sapjcorestapi</finalName>
   </build>
-  
 </project>

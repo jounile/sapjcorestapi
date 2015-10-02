@@ -3,7 +3,7 @@ package fi.bilot;
 import fi.bilot.flight.FlightCustomerList;
 import fi.bilot.flight.FlightDetails;
 import fi.bilot.flight.FlightList;
-import fi.bilot.order.OrderJcoFunctionCalls;
+import fi.bilot.order.OrderDetails;
 import fi.bilot.test.Monitoring;
 import fi.bilot.test.TestJcoFunctionCalls;
 
@@ -27,7 +27,7 @@ public class SapJcoRestApi {
 	private static FlightList fl = new FlightList();
 	private static FlightDetails fd = new FlightDetails();
 	private static FlightCustomerList fcl = new FlightCustomerList();
-	private static OrderJcoFunctionCalls order = new OrderJcoFunctionCalls();
+	private static OrderDetails order = new OrderDetails();
 	
 	public static void main(String[] args) throws Exception 
     {
