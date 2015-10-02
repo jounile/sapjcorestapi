@@ -1,8 +1,16 @@
 package fi.bilot.pojo;
 
 import com.sap.conn.jco.JCoStructure;
+
 import com.sap.conn.jco.JCoTable;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
+
+@JsonIgnoreProperties(ignoreUnknown = true)
+@XmlRootElement(name = "Flight")
 public class Flight {
 
 	String carrier;

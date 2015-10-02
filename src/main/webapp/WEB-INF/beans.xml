@@ -24,9 +24,16 @@
 			<ref bean="orderService"/>
 			<ref bean="flightService"/>
 		</jaxrs:serviceBeans>
+		<jaxrs:extensionMappings> 
+            <entry key="xml" value="application/xml" /> 
+            <entry key="json" value="application/json" /> 
+        </jaxrs:extensionMappings> 
+        <jaxrs:providers>
+	        <bean class="org.codehaus.jackson.jaxrs.JacksonJaxbJsonProvider" />
+	    </jaxrs:providers>
 	</jaxrs:server>
-	
+
 	<bean id="orderService" class="fi.bilot.service.OrderService"/>
 	<bean id="flightService" class="fi.bilot.service.FlightService"/>
-
+ 
 </beans>

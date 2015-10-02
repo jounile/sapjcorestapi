@@ -68,7 +68,7 @@ public class FlightDetails {
 		flight.setCarrier(carrier);
 		flight.setConnectionNumber(connectionNumber);
 		flight.setDate(date);
-		
+				
 		exports = function.getExportParameterList();
 		returnStructure = exports.getStructure("RETURN");
 		flight.setReturnStructure(returnStructure);
