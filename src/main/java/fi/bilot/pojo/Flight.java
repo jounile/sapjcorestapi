@@ -2,20 +2,25 @@ package fi.bilot.pojo;
 
 import com.sap.conn.jco.JCoStructure;
 
-import com.sap.conn.jco.JCoTable;
-
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlElement;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 
+@SuppressWarnings("restriction")
 @JsonIgnoreProperties(ignoreUnknown = true)
 @XmlRootElement(name = "Flight")
 public class Flight {
 
-	String carrier;
-	String connectionNumber;
-	String date;
+	@XmlElement(name="carrier", required=true)
+	public String carrier;
+	
+	@XmlElement(name="connectionNumber", required=true)
+	public String connectionNumber;
+	
+	@XmlElement(name="date", required=true)
+	public String date;
 	
 	JCoStructure returnStructure;
 	JCoStructure flightData;

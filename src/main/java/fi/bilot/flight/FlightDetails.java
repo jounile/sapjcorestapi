@@ -20,11 +20,7 @@ import fi.bilot.pojo.Flight;
 
 public class FlightDetails {
 	
-	private String carrier = "LH";
-	private String connectionNumber = "0400";
-	private String date = "20151010";
-	
-	public Flight getFlightDetails() {
+	public Flight getFlightDetails(Flight flight) {
 		
 		JCoDestination jcoDestination;
 		JCoRepository rep;
@@ -43,14 +39,14 @@ public class FlightDetails {
 			System.out.println("Structure definition BAPISFDETA:\n");
 
 			imports = function.getImportParameterList();
-			if (carrier != null && !carrier.isEmpty()) {
-				imports.setValue("AIRLINECARRIER", carrier);
+			if (flight.getCarrier() != null && !flight.getCarrier().isEmpty()) {
+				imports.setValue("AIRLINECARRIER", flight.getCarrier());
 			}
-			if (connectionNumber != null && !connectionNumber.isEmpty()) {
-				imports.setValue("CONNECTIONNUMBER", connectionNumber);
+			if (flight.getConnectionNumber() != null && !flight.getConnectionNumber().isEmpty()) {
+				imports.setValue("CONNECTIONNUMBER", flight.getConnectionNumber());
 			}
-			if (date != null && !date.isEmpty()) {
-				imports.setValue("DATEOFFLIGHT", date);
+			if (flight.getDate() != null && !flight.getDate().isEmpty()) {
+				imports.setValue("DATEOFFLIGHT", flight.getDate());
 			}
 
 			for (int i = 0; i < rec.getFieldCount(); i++) {
@@ -63,11 +59,6 @@ public class FlightDetails {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		Flight flight = new Flight();
-		flight.setCarrier(carrier);
-		flight.setConnectionNumber(connectionNumber);
-		flight.setDate(date);
 				
 		exports = function.getExportParameterList();
 		returnStructure = exports.getStructure("RETURN");
@@ -85,8 +76,8 @@ public class FlightDetails {
 	}
 
 	@SuppressWarnings("unchecked")
-	public JSONObject getReturnStructureJSON() {
-		Flight fl = getFlightDetails();
+	public JSONObject getReturnStructureJSON(Flight flight) {
+		Flight fl = getFlightDetails(flight);
 		JCoStructure returnStructure = fl.getReturnStructure();
 		JCoMetaData meta = returnStructure.getMetaData();
 		JSONObject obj = new JSONObject();		
@@ -98,8 +89,8 @@ public class FlightDetails {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public JSONObject getFlightDataJSON() {
-		Flight fl = getFlightDetails();
+	public JSONObject getFlightDataJSON(Flight flight) {
+		Flight fl = getFlightDetails(flight);
 		JCoStructure returnStructure = fl.getFlightData();
 		JCoMetaData meta = returnStructure.getMetaData();
 		JSONObject obj = new JSONObject();		
@@ -111,10 +102,11 @@ public class FlightDetails {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public JSONObject getFlightJSON() {
+	public JSONObject getFlightJSON(Flight flight) {
 		JSONObject obj = new JSONObject();
-		obj.put("RETURN", getReturnStructureJSON());
-		obj.put("FLIGHTDATA", getFlightDataJSON());
+		obj.put("RETURN", getReturnStructureJSON(flight));
+		obj.put("FLIGHTDATA", getFlightDataJSON(flight));
 		return obj;
 	}
+
 }

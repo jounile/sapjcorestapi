@@ -22,12 +22,21 @@ import fi.bilot.pojo.Flight;
 @Path("/flight")
 public class FlightService {
 	
+
+    private static Flight flight = new Flight();
+	
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON) //{"Flight":{"carrier":"LH","connectionNumber":"0400","date":"20151010"}} 
 	@Produces(MediaType.APPLICATION_JSON)
-	public String flightService(Flight flight) {
-		FlightDetails ord = new FlightDetails();
+	public String flightService(Flight fl) {
 		
-		return ord.getFlightJSON().toString();
+		flight.carrier = fl.carrier;
+		flight.connectionNumber = fl.connectionNumber;
+		flight.date = fl.date;
+	
+		FlightDetails flightDetails = new FlightDetails();
+		String ret = flightDetails.getFlightJSON(flight).toString();
+		
+        return ret;       
 	}
 }
