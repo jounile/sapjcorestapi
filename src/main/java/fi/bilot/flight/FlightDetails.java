@@ -20,7 +20,7 @@ import fi.bilot.pojo.Flight;
 
 public class FlightDetails {
 	
-	public Flight getFlightDetails(Flight flight) {
+	public void getFlightDetails(Flight flight) {
 		
 		JCoDestination jcoDestination;
 		JCoRepository rep;
@@ -72,13 +72,11 @@ public class FlightDetails {
 		if (returnStructure.getChar(0) != 'S') {
 			throw new RuntimeException(returnStructure.getString("MESSAGE"));
 		}
-		return flight;	
 	}
 
 	@SuppressWarnings("unchecked")
-	public JSONObject getReturnStructureJSON(Flight flight) {
-		Flight fl = getFlightDetails(flight);
-		JCoStructure returnStructure = fl.getReturnStructure();
+	public JSONObject getReturnStructureJSON(Flight flight) {		
+		JCoStructure returnStructure = flight.getReturnStructure();
 		JCoMetaData meta = returnStructure.getMetaData();
 		JSONObject obj = new JSONObject();		
 		for (int i = 0; i < returnStructure.getFieldCount(); i++) 
@@ -89,9 +87,8 @@ public class FlightDetails {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public JSONObject getFlightDataJSON(Flight flight) {
-		Flight fl = getFlightDetails(flight);
-		JCoStructure returnStructure = fl.getFlightData();
+	public JSONObject getFlightDataJSON(Flight flight) {		
+		JCoStructure returnStructure = flight.getFlightData();
 		JCoMetaData meta = returnStructure.getMetaData();
 		JSONObject obj = new JSONObject();		
 		for (int i = 0; i < returnStructure.getFieldCount(); i++) 
@@ -103,6 +100,7 @@ public class FlightDetails {
 	
 	@SuppressWarnings("unchecked")
 	public JSONObject getFlightJSON(Flight flight) {
+		getFlightDetails(flight);
 		JSONObject obj = new JSONObject();
 		obj.put("RETURN", getReturnStructureJSON(flight));
 		obj.put("FLIGHTDATA", getFlightDataJSON(flight));

@@ -26,7 +26,7 @@ public class FlightService {
     private static Flight flight = new Flight();
 	
 	@POST
-	@Consumes(MediaType.APPLICATION_JSON) //{"Flight":{"carrier":"LH","connectionNumber":"0400","date":"20151010"}} 
+	@Consumes(MediaType.APPLICATION_JSON) //{"carrier":"LH","connectionNumber":"0400","date":"20151010"} 
 	@Produces(MediaType.APPLICATION_JSON)
 	public String flightService(Flight fl) {
 		
