@@ -4,7 +4,8 @@
 <h2>Available services</h2>
 <ul>
 <li><a href="http://localhost:8080/sapjcorestapi/rest/order/5">/rest/order/nro</a></li>
-<!--<li><a href="http://localhost:8080/sapjcorestapi/rest/orders/123">/rest/orders/user</a></li>-->
+<li><a href="http://localhost:8080/sapjcorestapi/rest/user/DOEJAMES1">/rest/user/username</a></li>
+<!--<li><a href="http://localhost:8080/sapjcorestapi/rest/orders/123">/rest/orders/nro</a></li>-->
 <!--<li><a href="http://localhost:8080/sapjcorestapi/rest/customer/234">/rest/customer/nro</a></li>-->
 <!--<li><a href="http://localhost:8080/sapjcorestapi/rest/users/234/">/rest/users/customer</a></li>-->
 <!--<li><a href="http://localhost:8080/sapjcorestapi/rest/atp/222/">/rest/atp/material</a></li>-->

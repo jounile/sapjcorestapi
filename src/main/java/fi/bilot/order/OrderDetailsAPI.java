@@ -20,8 +20,9 @@ import fi.bilot.JcoConnection;
 import fi.bilot.order.SalesDocument;
 
 
-public class OrderDetails
+public class OrderDetailsAPI
 {
+	SalesDocument salesDocument = new SalesDocument();
 	
 	public SalesDocument getOrder(String salesOrderNumber) 
 	{
@@ -54,7 +55,6 @@ public class OrderDetails
 			e.printStackTrace();
 		}
 		
-		SalesDocument salesDocument = new SalesDocument();
 		salesDocument.setSalesDocumentNumber(salesOrderNumber);
 		
 		if (importStructure.getValue("HEADER").toString().equalsIgnoreCase("X")) {

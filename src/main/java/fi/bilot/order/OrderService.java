@@ -22,7 +22,7 @@ public class OrderService {
 	@Path("/{number}")
 	@Produces("application/json")
 	public String getOrder(@PathParam("number") String number) {
-		OrderDetails ord = new OrderDetails();
+		OrderDetailsAPI ord = new OrderDetailsAPI();
 
 		return ord.getOrderJSON(number).toString();
 	}
