@@ -1,8 +1,8 @@
 package fi.bilot;
 
 import fi.bilot.flight.FlightCustomerList;
-import fi.bilot.flight.FlightDetails;
-import fi.bilot.flight.FlightList;
+import fi.bilot.flight.flightlist.FlightListSearchResults;
+import fi.bilot.flight.FlightAPI;
 import fi.bilot.order.OrderDetails;
 import fi.bilot.test.Monitoring;
 import fi.bilot.test.TestJcoFunctionCalls;
@@ -24,8 +24,8 @@ public class SapJcoRestApi {
 	private static TestJcoFunctionCalls test = new TestJcoFunctionCalls();
 	private static Monitoring monitoring = new Monitoring();
 	
-	private static FlightList fl = new FlightList();
-	private static FlightDetails fd = new FlightDetails();
+	private static FlightListSearchResults fl = new FlightListSearchResults();
+	private static FlightAPI fd = new FlightAPI();
 	private static FlightCustomerList fcl = new FlightCustomerList();
 	private static OrderDetails order = new OrderDetails();
 	
