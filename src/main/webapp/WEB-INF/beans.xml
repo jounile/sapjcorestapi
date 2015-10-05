@@ -25,6 +25,7 @@
 			<ref bean="flightService"/>
 			<ref bean="flightListService"/>
 			<ref bean="userService"/>
+			<ref bean="customerService"/>
 		</jaxrs:serviceBeans>
 		<jaxrs:extensionMappings> 
             <entry key="xml" value="application/xml" /> 
@@ -39,5 +40,6 @@
 	<bean id="flightService" class="fi.bilot.flight.FlightService"/>
 	<bean id="flightListService" class="fi.bilot.flightlist.FlightListService"/>
 	<bean id="userService" class="fi.bilot.user.UserService"/>
+	<bean id="customerService" class="fi.bilot.customer.CustomerService"/>
  
 </beans>

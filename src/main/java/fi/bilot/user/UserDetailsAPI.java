@@ -21,50 +21,41 @@ public class UserDetailsAPI
 	
 	public User getUser(String username) 
 	{
-		JCoDestination jcoDestination;
-		JCoFunction function = null; 
-		JCoParameterList importParams = null;
-		JCoTable returnTable = null;
-		JCoParameterList exports = null;
-		JCoStructure addressData = null;
-		JCoRepository rep;
-		JCoRecordMetaData addressMetaData = null;	
-		
+	
 		try {
-			jcoDestination = JCoDestinationManager.getDestination(Constants.DESTINATION_NAME);
-			function = jcoDestination.getRepository().getFunction("BAPI_USER_GET_DETAIL");
+			JCoDestination jcoDestination = JCoDestinationManager.getDestination(Constants.DESTINATION_NAME);
+			JCoFunction function = jcoDestination.getRepository().getFunction("BAPI_USER_GET_DETAIL");
 
-			importParams = function.getImportParameterList();
+			JCoParameterList importParams = function.getImportParameterList();
 			importParams.setValue("USERNAME", username);
 			importParams.setValue("CACHE_RESULTS", "X");
 	      
 			System.out.println("Calling BAPI_USER_GET_DETAIL");
 			function.execute(jcoDestination);
 			
-			returnTable = function.getTableParameterList().getTable("RETURN");
+			JCoTable returnTable = function.getTableParameterList().getTable("RETURN");
 			//System.out.println(returnTable);
 			
 			// ADDRESS structure definition
-			rep = jcoDestination.getRepository();
+			JCoRepository rep = jcoDestination.getRepository();
 			
-			addressMetaData = rep.getStructureDefinition("BAPIADDR3");
+			JCoRecordMetaData addressMetaData = rep.getStructureDefinition("BAPIADDR3");
 			System.out.println("Structure definition BAPIADDR3:\n");
 			for (int i = 0; i < addressMetaData.getFieldCount(); i++) {
 				System.out.println(i + 1 + ": " + addressMetaData.getName(i) + " " + addressMetaData.getDescription(i) + "\t");
 			}
 			
 			// ADDRESS structure
-			exports = function.getExportParameterList();
-			addressData = exports.getStructure("ADDRESS");
+			JCoParameterList exports = function.getExportParameterList();
+			JCoStructure addressData = exports.getStructure("ADDRESS");
 						
 			//System.out.println(addressData);
+			user.setAddressData(addressData);
+			user.setAddressMetaData(addressMetaData);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
-
-		user.setAddressData(addressData);
-		user.setAddressMetaData(addressMetaData);
+		}	
 		
 		return user;
 	}
