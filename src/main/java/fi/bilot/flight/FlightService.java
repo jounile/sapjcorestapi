@@ -1,4 +1,4 @@
-package fi.bilot.flight.service;
+package fi.bilot.flight;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
@@ -8,9 +8,7 @@ import javax.ws.rs.core.MediaType;
 
 import org.springframework.stereotype.Service;
 
-import fi.bilot.flight.FlightAPI;
-import fi.bilot.flight.FlightSearchParameters;
-import fi.bilot.flight.flightlist.FlightListSearchParameters;
+import fi.bilot.flightlist.FlightListSearchParameters;
 
 @Service
 @Path("/flight")

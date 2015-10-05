@@ -78,24 +78,6 @@ public class OrderDetails
 		return salesDocument;
 	}
 	
-	public String getStatusHeadersOutXML(String salesOrderNumber){				
-		SalesDocument sd = getOrder(salesOrderNumber);
-		JCoTable tbl = sd.getOrderStatusHeadersOut();
-		return tbl.toXML();
-	}
-	
-	public String getHeadersOutXML(String salesOrderNumber){				
-		SalesDocument sd = getOrder(salesOrderNumber);
-		JCoTable tbl = sd.getOrderHeadersOut();
-		return tbl.toXML();
-	}
-	
-	public String getStatusItemsOutXML(String salesOrderNumber){				
-		SalesDocument sd = getOrder(salesOrderNumber);
-		JCoTable tbl = sd.getOrderStatusItemsOut();
-		return tbl.toXML();
-	}
-	
 	@SuppressWarnings("unchecked")
 	public JSONObject getHeadersOutJSON(String salesOrderNumber){
 		SalesDocument sd = getOrder(salesOrderNumber);
@@ -152,4 +134,24 @@ public class OrderDetails
 		obj.put("ORDER_STATUSITEMS_OUT", getStatusItemsOutJSON(salesOrderNumber));
 		return obj;
 	}
+
+/*
+	public String getStatusHeadersOutXML(String salesOrderNumber){				
+		SalesDocument sd = getOrder(salesOrderNumber);
+		JCoTable tbl = sd.getOrderStatusHeadersOut();
+		return tbl.toXML();
+	}
+	
+	public String getHeadersOutXML(String salesOrderNumber){				
+		SalesDocument sd = getOrder(salesOrderNumber);
+		JCoTable tbl = sd.getOrderHeadersOut();
+		return tbl.toXML();
+	}
+	
+	public String getStatusItemsOutXML(String salesOrderNumber){				
+		SalesDocument sd = getOrder(salesOrderNumber);
+		JCoTable tbl = sd.getOrderStatusItemsOut();
+		return tbl.toXML();
+	}
+*/
 }

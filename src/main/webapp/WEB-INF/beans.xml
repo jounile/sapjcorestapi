@@ -34,8 +34,8 @@
 	    </jaxrs:providers>
 	</jaxrs:server>
 
-	<bean id="orderService" class="fi.bilot.service.OrderService"/>
-	<bean id="flightService" class="fi.bilot.flight.service.FlightService"/>
-	<bean id="flightListService" class="fi.bilot.flight.service.FlightListService"/>
+	<bean id="orderService" class="fi.bilot.order.OrderService"/>
+	<bean id="flightService" class="fi.bilot.flight.FlightService"/>
+	<bean id="flightListService" class="fi.bilot.flightlist.FlightListService"/>
  
 </beans>

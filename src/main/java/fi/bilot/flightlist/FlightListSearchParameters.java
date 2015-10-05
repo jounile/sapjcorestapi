@@ -1,4 +1,4 @@
-package fi.bilot.flight.flightlist;
+package fi.bilot.flightlist;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;

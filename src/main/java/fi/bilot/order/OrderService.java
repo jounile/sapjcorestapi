@@ -1,4 +1,4 @@
-package fi.bilot.service;
+package fi.bilot.order;
 
 import java.util.Properties;
 
@@ -13,7 +13,6 @@ import com.sap.conn.jco.ext.Environment;
 
 import fi.bilot.Constants;
 import fi.bilot.CustomDestinationDataProvider;
-import fi.bilot.order.OrderDetails;
 
 @Service
 @Path("/order")
@@ -22,16 +21,9 @@ public class OrderService {
 	@GET
 	@Path("/{number}")
 	@Produces("application/json")
-	public String isPrime(@PathParam("number") String number) {
+	public String getOrder(@PathParam("number") String number) {
 		OrderDetails ord = new OrderDetails();
-		
-		//System.out.println(ord.getHeadersOutXML(number));		
-		//System.out.println(ord.getStatusHeadersOutXML(number));		
-		//System.out.println(ord.getStatusItemsOutXML(number));
-		
-		//return ord.getHeadersOutJSON(number).toString();
-		//return ord.getStatusHeadersOutJSON(number).toString();
-		//return ord.getStatusItemsOutJSON(number).toString();
+
 		return ord.getOrderJSON(number).toString();
 	}
 }

@@ -1,7 +1,7 @@
 package fi.bilot;
 
 import fi.bilot.flight.FlightCustomerList;
-import fi.bilot.flight.flightlist.FlightListSearchResults;
+import fi.bilot.flightlist.FlightListSearchResults;
 import fi.bilot.flight.FlightAPI;
 import fi.bilot.order.OrderDetails;
 import fi.bilot.test.Monitoring;

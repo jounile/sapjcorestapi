@@ -1,4 +1,4 @@
-package fi.bilot.flight.service;
+package fi.bilot.flightlist;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
@@ -7,9 +7,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import org.springframework.stereotype.Service;
-
-import fi.bilot.flight.FlightAPI;
-import fi.bilot.flight.flightlist.FlightListSearchParameters;
 
 @Service
 @Path("/flightlist")
@@ -28,8 +25,8 @@ public class FlightListService {
 		flsp.toCity = params.toCity;
 		flsp.maxRead = params.maxRead;
 	
-		FlightAPI flightApi = new FlightAPI();
-		return flightApi.getFlightListJSON(flsp).toString();      
+		FlightListAPI flightListApi = new FlightListAPI();
+		return flightListApi.getFlightListJSON(flsp).toString();      
 	}
 
 }
