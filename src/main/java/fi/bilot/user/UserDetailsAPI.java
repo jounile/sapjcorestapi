@@ -17,11 +17,11 @@ import fi.bilot.Constants;
 
 public class UserDetailsAPI
 {
-	User user = new User();
-	
+
 	public User getUser(String username) 
 	{
-	
+		User user = new User();
+		
 		try {
 			JCoDestination jcoDestination = JCoDestinationManager.getDestination(Constants.DESTINATION_NAME);
 			JCoFunction function = jcoDestination.getRepository().getFunction("BAPI_USER_GET_DETAIL");

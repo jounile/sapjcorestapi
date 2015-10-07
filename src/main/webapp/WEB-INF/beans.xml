@@ -41,5 +41,12 @@
 	<bean id="flightListService" class="fi.bilot.flightlist.FlightListService"/>
 	<bean id="userService" class="fi.bilot.user.UserService"/>
 	<bean id="customerService" class="fi.bilot.customer.CustomerService"/>
+	
+	<bean id="flightApi" class="fi.bilot.flight.FlightAPI"/>
+	<bean id="flightListApi" class="fi.bilot.flightlist.FlightListAPI"/>
+	<bean id="customerApi" class="fi.bilot.customer.CustomerAPI"/>
+	<bean id="orderDetailsApi" class="fi.bilot.order.OrderDetailsAPI"/>
+	<bean id="userDetailsApi" class="fi.bilot.user.UserDetailsAPI"/>
+	
  
 </beans>

@@ -15,23 +15,13 @@ public class FlightListAPI {
 	
 	public FlightListSearchResults getFlightListSearchResults(FlightListSearchParameters flsp) {
 		
-		JCoDestination jcoDestination;
-		JCoRepository rep;
-		JCoFunction function = null;
-		JCoRecordMetaData rec = null;
+		FlightListSearchResults flsr = new FlightListSearchResults();
 		
 		try {
-			jcoDestination = JCoDestinationManager.getDestination(Constants.DESTINATION_NAME);
-			rep = jcoDestination.getRepository();
-			function = rep.getFunctionTemplate("BAPI_SFLIGHT_GETLIST").getFunction();
-			rec = rep.getStructureDefinition("BAPISFLIST");
-			
-			System.out.println("Structure definition BAPISFLIST:\n");
-			int count = rec.getFieldCount();
-			for (int i = 0; i < count; i++) {
-				System.out.println(i + 1 + ". " + rec.getName(i) + " " + rec.getDescription(i) + "\t");
-			}
-		
+			JCoDestination jcoDestination = JCoDestinationManager.getDestination(Constants.DESTINATION_NAME);
+			JCoRepository rep = jcoDestination.getRepository();
+			JCoFunction function = rep.getFunctionTemplate("BAPI_SFLIGHT_GETLIST").getFunction();
+
 			function.getImportParameterList().setValue("FROMCOUNTRYKEY", flsp.getFromCountry());
 			function.getImportParameterList().setValue("FROMCITY", flsp.getFromCity());
 			function.getImportParameterList().setValue("TOCOUNTRYKEY", flsp.getToCountry());
@@ -40,17 +30,23 @@ public class FlightListAPI {
 
 			System.out.println("Calling BAPI_SFLIGHT_GETLIST" + "\n");
 			function.execute(jcoDestination);
-		
+			
+			JCoTable table = function.getTableParameterList().getTable("FLIGHTLIST");
+			JCoRecordMetaData rec = rep.getStructureDefinition("BAPISFLIST");
+			
+			System.out.println("Structure definition BAPISFLIST:\n");
+			int count = rec.getFieldCount();
+			for (int i = 0; i < count; i++) {
+				System.out.println(i + 1 + ". " + rec.getName(i) + " " + rec.getDescription(i) + "\t");
+			}
+			
+			flsr.setFlightListTable(table);
+			flsr.setMetaData(rec);
+			
 		} catch (Exception e) {
 			System.out.println(e.toString());
 		}
-		
-		JCoTable table = function.getTableParameterList().getTable("FLIGHTLIST");
-		
-		FlightListSearchResults flsr = new FlightListSearchResults();
-		flsr.setFlightListTable(table);
-		flsr.setMetaData(rec);
-		
+
 		return flsr;
 	}
 	

@@ -3,8 +3,8 @@
 <h1>SAP JCO REST API</h1>
 <h2>Available services</h2>
 <ul>
-<li><a href="http://localhost:8080/sapjcorestapi/rest/order/5">/rest/order/nro</a></li>
-<li><a href="http://localhost:8080/sapjcorestapi/rest/user/DOEJAMES1">/rest/user/username</a></li>
+<li><a href="http://localhost:8080/sapjcorestapi/rest/order/5">/rest/order/[nro]</a></li>
+<li><a href="http://localhost:8080/sapjcorestapi/rest/user/DOEJAMES1">/rest/user/[username]</a></li>
 <li><a href="http://localhost:8080/sapjcorestapi/rest/customer/1">/rest/customer</a> POST {"customerNro":"17","salesOrg":"0001","distributionChannel":"01","division":"01"}</li>
 
 <!--<li><a href="http://localhost:8080/sapjcorestapi/rest/orders/123">/rest/orders/nro</a></li>-->

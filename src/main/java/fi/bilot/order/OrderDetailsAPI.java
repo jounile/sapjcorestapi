@@ -23,26 +23,21 @@ import fi.bilot.order.SalesDocument;
 
 public class OrderDetailsAPI
 {
-	SalesDocument salesDocument = new SalesDocument();
-	
+
 	public SalesDocument getOrder(String salesOrderNumber) 
 	{
-		JCoDestination jcoDestination;
-		JCoFunction function = null; 
-		JCoStructure importStructure = null;
-		JCoTable importTable = null;
-		JCoTable exportTable = null;
+		SalesDocument salesDocument = new SalesDocument();
 		
 		try {
-			jcoDestination = JCoDestinationManager.getDestination(Constants.DESTINATION_NAME);
-			function = jcoDestination.getRepository().getFunction("BAPI_ISAORDER_GETDETAILEDLIST");
+			JCoDestination jcoDestination = JCoDestinationManager.getDestination(Constants.DESTINATION_NAME);
+			JCoFunction function = jcoDestination.getRepository().getFunction("BAPI_ISAORDER_GETDETAILEDLIST");
 
-			importStructure = function.getImportParameterList().getStructure("I_BAPI_VIEW");		
+			JCoStructure importStructure = function.getImportParameterList().getStructure("I_BAPI_VIEW");		
 			importStructure.setValue("HEADER", "X");
 			importStructure.setValue("STATUS_H", "X");
 			importStructure.setValue("STATUS_I", "X");
 			
-			importTable = function.getTableParameterList().getTable("SALES_DOCUMENTS");
+			JCoTable importTable = function.getTableParameterList().getTable("SALES_DOCUMENTS");
 			
 			importTable.appendRow();
 			
@@ -52,30 +47,30 @@ public class OrderDetailsAPI
 			//System.out.println("Calling BAPI_ISAORDER_GETDETAILEDLIST");
 			function.execute(jcoDestination);
 			
+			salesDocument.setSalesDocumentNumber(salesOrderNumber);
+			
+			if (importStructure.getValue("HEADER").toString().equalsIgnoreCase("X")) {
+				JCoTable exportTable = function.getTableParameterList().getTable("ORDER_HEADERS_OUT");
+				salesDocument.setOrderHeadersOut(exportTable);
+				//System.out.println(exportTable);
+			}
+			
+			if (importStructure.getValue("STATUS_H").toString().equalsIgnoreCase("X")) {
+				JCoTable exportTable = function.getTableParameterList().getTable("ORDER_STATUSHEADERS_OUT");
+				salesDocument.setOrderStatusheadersOut(exportTable);
+				//System.out.println(exportTable);
+			}
+			
+			if (importStructure.getValue("STATUS_I").toString().equalsIgnoreCase("X")) {
+				JCoTable exportTable = function.getTableParameterList().getTable("ORDER_STATUSITEMS_OUT");
+				salesDocument.setOrderStatusitemsOut(exportTable);
+				//System.out.println(exportTable);
+			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		salesDocument.setSalesDocumentNumber(salesOrderNumber);
-		
-		if (importStructure.getValue("HEADER").toString().equalsIgnoreCase("X")) {
-			exportTable = function.getTableParameterList().getTable("ORDER_HEADERS_OUT");
-			salesDocument.setOrderHeadersOut(exportTable);
-			//System.out.println(exportTable);
-		}
-		
-		if (importStructure.getValue("STATUS_H").toString().equalsIgnoreCase("X")) {
-			exportTable = function.getTableParameterList().getTable("ORDER_STATUSHEADERS_OUT");
-			salesDocument.setOrderStatusheadersOut(exportTable);
-			//System.out.println(exportTable);
-		}
-		
-		if (importStructure.getValue("STATUS_I").toString().equalsIgnoreCase("X")) {
-			exportTable = function.getTableParameterList().getTable("ORDER_STATUSITEMS_OUT");
-			salesDocument.setOrderStatusitemsOut(exportTable);
-			//System.out.println(exportTable);
-		}
-		
+
 		return salesDocument;
 	}
 	
@@ -135,24 +130,4 @@ public class OrderDetailsAPI
 		obj.put("ORDER_STATUSITEMS_OUT", getStatusItemsOutJSON(salesOrderNumber));
 		return obj;
 	}
-
-/*
-	public String getStatusHeadersOutXML(String salesOrderNumber){				
-		SalesDocument sd = getOrder(salesOrderNumber);
-		JCoTable tbl = sd.getOrderStatusHeadersOut();
-		return tbl.toXML();
-	}
-	
-	public String getHeadersOutXML(String salesOrderNumber){				
-		SalesDocument sd = getOrder(salesOrderNumber);
-		JCoTable tbl = sd.getOrderHeadersOut();
-		return tbl.toXML();
-	}
-	
-	public String getStatusItemsOutXML(String salesOrderNumber){				
-		SalesDocument sd = getOrder(salesOrderNumber);
-		JCoTable tbl = sd.getOrderStatusItemsOut();
-		return tbl.toXML();
-	}
-*/
 }
