@@ -8,34 +8,32 @@ import com.sap.conn.jco.JCoFunction;
 import com.sap.conn.jco.JCoParameterList;
 import com.sap.conn.jco.JCoRecordMetaData;
 import com.sap.conn.jco.JCoStructure;
-import com.sap.conn.jco.JCoTable;
 
 import fi.bilot.Constants;
 import fi.bilot.HelperFunctions;
-import fi.bilot.user.User;
 
 public class CustomerAPI
 {
-	Customer customer = new Customer();
 	
-	public Customer getCustomer(String customerNro) 
+	public CustomerSearchResults getCustomerSearchResults(CustomerSearchParameters csp) 
 	{
+		CustomerSearchResults csr = new CustomerSearchResults();
 
 		try {
 			JCoDestination jcoDestination = JCoDestinationManager.getDestination(Constants.DESTINATION_NAME);
 			JCoFunction function = jcoDestination.getRepository().getFunction("BAPI_CUSTOMER_GETDETAIL1");
 
-			customerNro = HelperFunctions.HandleLeadingZeros(customerNro);
-			
 			JCoParameterList importParams = function.getImportParameterList();
-			importParams.setValue("CUSTOMERNO", customerNro);
-			importParams.setValue("PI_SALESORG", "0001");
-			importParams.setValue("PI_DISTR_CHAN", "01");
-			importParams.setValue("PI_DIVISION", "01");
+			importParams.setValue("CUSTOMERNO", HelperFunctions.HandleLeadingZeros(csp.getCustomerNro()));
+			importParams.setValue("PI_SALESORG", csp.getSalesOrg());
+			importParams.setValue("PI_DISTR_CHAN", csp.getDistributionChannel());
+			importParams.setValue("PI_DIVISION", csp.getDivision());
 			
 
 			System.out.println("Calling BAPI_CUSTOMER_GETDETAIL1");
 			function.execute(jcoDestination);
+		
+		
 			
 			JCoParameterList exports = function.getExportParameterList();
 			JCoStructure returnTable = exports.getStructure("RETURN");
@@ -56,23 +54,22 @@ public class CustomerAPI
 				System.out.println(i + 1 + ": " + optionalMetaData.getName(i) + " " + optionalMetaData.getDescription(i) + "\t");
 			}
 			
-			customer.setPersonalData(personalData);
-			customer.setOptionalPersonalData(optionalPersonalData);
-			customer.setMetaData(metaData);
-			customer.setOptionalMetaData(optionalMetaData);
+			csr.setPersonalData(personalData);
+			csr.setOptionalPersonalData(optionalPersonalData);
+			csr.setMetaData(metaData);
+			csr.setOptionalMetaData(optionalMetaData);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
+		}		
 		
-		return customer;
+		return csr;
 	}
 	
 	@SuppressWarnings("unchecked")
-	public JSONObject getPersonalDataJSON(String customerNro) {
-		Customer customer = getCustomer(customerNro);
-		JCoStructure personalData = customer.getPersonalData();
-		JCoRecordMetaData metaData = customer.getMetaData();
+	public JSONObject getPersonalDataJSON(CustomerSearchResults fsr) {
+		JCoStructure personalData = fsr.getPersonalData();
+		JCoRecordMetaData metaData = fsr.getMetaData();
 		JSONObject obj = new JSONObject();
 		for (int i = 0; i < personalData.getFieldCount(); i++) 
 		{
@@ -82,9 +79,9 @@ public class CustomerAPI
 	}
 	
 	@SuppressWarnings("unchecked")
-	public JSONObject getOptionalPersonalDataJSON(String customerNro) {
-		JCoStructure optionalPersonalData = customer.getOptionalPersonalData();
-		JCoRecordMetaData optionalMetaData = customer.getOptionalMetaData();
+	public JSONObject getOptionalPersonalDataJSON(CustomerSearchResults fsr) {
+		JCoStructure optionalPersonalData = fsr.getOptionalPersonalData();
+		JCoRecordMetaData optionalMetaData = fsr.getOptionalMetaData();
 		JSONObject obj = new JSONObject();
 		for (int i = 0; i < optionalPersonalData.getFieldCount(); i++) 
 		{
@@ -94,10 +91,11 @@ public class CustomerAPI
 	}
 
 	@SuppressWarnings("unchecked")
-	public JSONObject getCustomerJSON(String customerNro) {
+	public JSONObject getCustomerJSON(CustomerSearchParameters csp) {
+		CustomerSearchResults fsr = getCustomerSearchResults(csp);
 		JSONObject obj = new JSONObject();
-		obj.put("PE_PERSONALDATA", getPersonalDataJSON(customerNro));
-		obj.put("PE_OPT_PERSONALDATA", getOptionalPersonalDataJSON(customerNro));
+		obj.put("PE_PERSONALDATA", getPersonalDataJSON(fsr));
+		obj.put("PE_OPT_PERSONALDATA", getOptionalPersonalDataJSON(fsr));
 		return obj;
 	}
 }
