@@ -1,4 +1,4 @@
-package fi.bilot.customer;
+package fi.bilot.customersearch;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;

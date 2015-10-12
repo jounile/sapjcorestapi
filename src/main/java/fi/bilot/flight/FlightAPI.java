@@ -22,23 +22,16 @@ public class FlightAPI {
 	
 	public FlightSearchResults getFlightSearchResults(FlightSearchParameters fsp) {
 		
-		JCoDestination jcoDestination;
-		JCoRepository rep;
-		JCoFunction function = null; 
-		JCoRecordMetaData rec;		
-		JCoParameterList imports;
-		JCoParameterList exports;
-		JCoStructure returnStructure;
-		JCoStructure flightData;
+		FlightSearchResults fsr = new FlightSearchResults();
 		
 		try {
-			jcoDestination = JCoDestinationManager.getDestination(Constants.DESTINATION_NAME);
-			rep = jcoDestination.getRepository();
-			function = rep.getFunction("BAPI_SFLIGHT_GETDETAIL");
-			rec = rep.getStructureDefinition("BAPISFDETA");
+			JCoDestination jcoDestination = JCoDestinationManager.getDestination(Constants.DESTINATION_NAME);
+			JCoRepository rep = jcoDestination.getRepository();
+			JCoFunction function = rep.getFunction("BAPI_SFLIGHT_GETDETAIL");
+			JCoRecordMetaData rec = rep.getStructureDefinition("BAPISFDETA");
 			System.out.println("Structure definition BAPISFDETA:\n");
 
-			imports = function.getImportParameterList();
+			JCoParameterList imports = function.getImportParameterList();
 			if (fsp.getCarrier() != null && !fsp.getCarrier().isEmpty()) {
 				imports.setValue("AIRLINECARRIER", fsp.getCarrier());
 			}
@@ -55,23 +48,22 @@ public class FlightAPI {
 			
 			//System.out.println("Calling BAPI_SFLIGHT_GETDETAIL");
 			function.execute(jcoDestination);
+		
+			JCoParameterList exports = function.getExportParameterList();
+			JCoStructure returnStructure = exports.getStructure("RETURN");
+			fsr.setReturnStructure(returnStructure);
+			System.out.println(returnStructure);
+	
+			JCoStructure flightData = exports.getStructure("FLIGHTDATA");
+			fsr.setFlightData(flightData);
+			System.out.println(flightData);
 			
+			if (returnStructure.getChar(0) != 'S') {
+				throw new RuntimeException(returnStructure.getString("MESSAGE"));
+			}
+		
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
-		
-		FlightSearchResults fsr = new FlightSearchResults();
-		exports = function.getExportParameterList();
-		returnStructure = exports.getStructure("RETURN");
-		fsr.setReturnStructure(returnStructure);
-		System.out.println(returnStructure);
-
-		flightData = exports.getStructure("FLIGHTDATA");
-		fsr.setFlightData(flightData);
-		System.out.println(flightData);
-		
-		if (returnStructure.getChar(0) != 'S') {
-			throw new RuntimeException(returnStructure.getString("MESSAGE"));
 		}
 		
 		return fsr;
