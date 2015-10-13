@@ -49,10 +49,11 @@ public class OrderCreateAPI {
 			JCoTable sales_items_in = function.getTableParameterList().getTable("SALES_ITEMS_IN");
 			sales_items_in.appendRow();
 			sales_items_in.setValue("ITM_NUMBER", "000010");
-			sales_items_in.setValue("MATERIAL", "000000000000A10034"); // ARLA RASVATON MAITO 1L
+			sales_items_in.setValue("MATERIAL", "A10000"); // ARLA RASVATON MAITO 1L
 			sales_items_in.setValue("TARGET_QTY", "1.000");
-			//sales_items_in.setValue("TARGET_QU", "PC");
-			sales_items_in.setValue("SALES_UNIT", "PC");
+			//sales_items_in.setValue("TARGET_QTY", "00000001");
+			//sales_items_in.setValue("TARGET_QU", "ST");
+			sales_items_in.setValue("SALES_UNIT", "ST");
 							
 			JCoTable sales_schedules_in = function.getTableParameterList().getTable("SALES_SCHEDULES_IN");
 			sales_schedules_in.appendRow();
@@ -97,10 +98,14 @@ public class OrderCreateAPI {
 			
 			// Tables
 			JCoTable returnTable = function.getTableParameterList().getTable("RETURN");
+			System.out.println(returnTable);
 			
 			if (returnTable.getChar(0) != 'S') {
 				throw new RuntimeException(returnTable.getString("MESSAGE"));
 			}
+			
+			JCoTable incomplete_log = function.getTableParameterList().getTable("INCOMPLETE_LOG");
+			System.out.println(incomplete_log);
 			
 			JCoTable items_ex = function.getTableParameterList().getTable("ITEMS_EX");
 			//System.out.println(items_ex);
