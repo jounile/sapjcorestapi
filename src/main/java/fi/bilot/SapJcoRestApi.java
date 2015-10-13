@@ -19,6 +19,7 @@ import fi.bilot.test.TestJcoFunctionCalls;
  * @author jounile
  *
  */
+/*
 public class SapJcoRestApi {
 
 	private static TestJcoFunctionCalls test = new TestJcoFunctionCalls();
@@ -46,3 +47,4 @@ public class SapJcoRestApi {
 
     }    
 }
+*/

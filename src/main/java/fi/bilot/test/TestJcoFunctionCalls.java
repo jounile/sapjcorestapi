@@ -10,7 +10,6 @@ import com.sap.conn.jco.JCoStructure;
 import com.sap.conn.jco.JCoTable;
 
 import fi.bilot.Constants;
-import fi.bilot.JcoConnection;
 
 public class TestJcoFunctionCalls {
 	

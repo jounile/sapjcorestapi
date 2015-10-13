@@ -1,3 +1,4 @@
+/*
 package fi.bilot;
 
 import java.util.Properties;     
@@ -43,13 +44,11 @@ public class CustomDestinationDataProvider implements DestinationDataProvider {
         return true;     
     }     
       
-    /** 
-      *Add new destination 
-      *@param properties holds all the required data for a destination 
-     **/  
+ 
     void addDestination(String destinationName, Properties properties) {     
         synchronized (destinations) {  
             destinations.put(destinationName, properties);  
         }  
     }
 }
+*/

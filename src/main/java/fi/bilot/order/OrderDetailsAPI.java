@@ -15,9 +15,7 @@ import com.sap.conn.jco.JCoTable;
 import com.sap.conn.jco.ext.Environment;
 
 import fi.bilot.Constants;
-import fi.bilot.CustomDestinationDataProvider;
 import fi.bilot.HelperFunctions;
-import fi.bilot.JcoConnection;
 import fi.bilot.order.SalesDocument;
 
 

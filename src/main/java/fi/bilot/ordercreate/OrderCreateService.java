@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 import com.sap.conn.jco.ext.Environment;
 
 import fi.bilot.Constants;
-import fi.bilot.CustomDestinationDataProvider;
 import fi.bilot.customer.CustomerAPI;
 
 @Service
