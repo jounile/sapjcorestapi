@@ -1,9 +1,0 @@
-jco.destination.pool_capacity=100
-jco.client.lang=en
-jco.client.ashost=biloterp2.bilot.local
-jco.client.user=hybris_rfc
-jco.destination.peak_limit=10
-jco.client.sysnr=00
-jco.client.passwd=init1234
-jco.client.client=800
-jco.client.dest=BE2

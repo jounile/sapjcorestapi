@@ -1,4 +1,3 @@
-/*
 package fi.bilot;
 
 
@@ -13,6 +12,29 @@ import fi.bilot.Constants;
 
 public class JcoConnection {
 	
+	public static void main(String args[]) {
+		createDestination();
+	}
+	
+	public static void createDestination() {
+		Properties connectProperties = new Properties();
+		connectProperties.setProperty(DestinationDataProvider.JCO_POOL_CAPACITY, "100");
+		connectProperties.setProperty(DestinationDataProvider.JCO_LANG,   "en");
+		connectProperties.setProperty(DestinationDataProvider.JCO_ASHOST, "biloterp2.bilot.local");
+		connectProperties.setProperty(DestinationDataProvider.JCO_SYSNR,  "00");
+		connectProperties.setProperty(DestinationDataProvider.JCO_CLIENT, "800");
+		connectProperties.setProperty(DestinationDataProvider.JCO_USER,   "hybris_rfc");
+		connectProperties.setProperty(DestinationDataProvider.JCO_PASSWD, "init1234");
+		connectProperties.setProperty(DestinationDataProvider.JCO_DEST, "BE2");
+		connectProperties.setProperty(DestinationDataProvider.JCO_PEAK_LIMIT, "10");
+
+		fi.bilot.CustomDestinationDataProvider.MyDestinationDataProvider myProvider = new CustomDestinationDataProvider.MyDestinationDataProvider();
+		
+		com.sap.conn.jco.ext.Environment.registerDestinationDataProvider(myProvider);
+		myProvider.changePropertiesForABAP_AS_WITH_POOL(connectProperties);
+	}
+	
+	/*
     static 
 	{
 		CustomDestinationDataProvider provider = CustomDestinationDataProvider.getInstance(); 
@@ -47,5 +69,5 @@ public class JcoConnection {
         }
 
     }
+    */
 }
-*/

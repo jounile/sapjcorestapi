@@ -1,6 +1,7 @@
 package fi.bilot.ordercreate;
 
 import java.util.Date;
+import java.util.Properties;
 
 import com.sap.conn.jco.JCoDestination;
 import com.sap.conn.jco.JCoDestinationManager;
@@ -10,8 +11,10 @@ import com.sap.conn.jco.JCoParameterList;
 import com.sap.conn.jco.JCoRecord;
 import com.sap.conn.jco.JCoStructure;
 import com.sap.conn.jco.JCoTable;
+import com.sap.conn.jco.ext.DestinationDataProvider;
 
-import fi.bilot.Constants;
+import fi.bilot.*;
+import fi.bilot.CustomDestinationDataProvider.MyDestinationDataProvider;
 
 public class OrderCreateAPI {
 
@@ -19,6 +22,7 @@ public class OrderCreateAPI {
 	public String createOrder() {
 		
 		try {
+			
 			JCoDestination jcoDestination = JCoDestinationManager.getDestination(Constants.DESTINATION_NAME);
 			JCoFunction function = jcoDestination.getRepository().getFunction("SD_SALESDOCUMENT_CREATE");
 
